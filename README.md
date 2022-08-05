@@ -8,7 +8,7 @@ Supports:
 
 # Example Usage
 ```rust
-use cdragon::repository::{map_asset_path, Repository};
+use cdragon::repository::Repository;
 use tokio;
 
 #[tokio::main]
@@ -20,8 +20,8 @@ async fn main() {
         Some(c) => {
             println!("Roles: {:?}", c.roles);
             println!(
-                "Portrait URL: {:?}",
-                map_asset_path(&c.square_portrait_path).unwrap()
+                "Portrait URL: {}",
+                c.square_portrait_path.map_path().unwrap()
             );
         }
         None => println!("None"),
@@ -32,5 +32,5 @@ async fn main() {
 Output:
 ```text
 Roles: ["marksman"]
-Portrait URL: "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/360.png"
+Portrait URL: https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/360.png
 ```

@@ -1,3 +1,4 @@
+use crate::asset::AssetURL;
 use serde::Deserialize;
 use std::collections::HashMap;
 
@@ -12,7 +13,7 @@ pub struct Rune {
     pub name: String,
     #[serde(rename = "iconPath")]
     /// Rune icon asset path
-    pub icon_path: String,
+    pub icon_path: AssetURL,
 }
 
 /// Repository that contains [`Rune`] data

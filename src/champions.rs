@@ -1,3 +1,4 @@
+use crate::asset::AssetURL;
 use serde::Deserialize;
 use std::collections::HashMap;
 
@@ -16,7 +17,7 @@ pub struct Champion {
     pub alias: String,
     /// Champion portrait picture asset path
     #[serde(rename = "squarePortraitPath")]
-    pub square_portrait_path: String,
+    pub square_portrait_path: AssetURL,
     /// Vector of roles the champion is categorized under
     pub roles: Vec<String>,
 }
