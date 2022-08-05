@@ -3,19 +3,26 @@ use std::collections::HashMap;
 
 const RUNES_DATA_URL: &str = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perks.json";
 
+/// Basic information about a Rune, as seen by CommunityDragon
 #[derive(Deserialize, Debug)]
 pub struct Rune {
+    /// Internal rune id
     pub id: i32,
+    /// Rune display name
     pub name: String,
     #[serde(rename = "iconPath")]
+    /// Rune icon asset path
     pub icon_path: String,
 }
 
+/// Repository that contains [`Rune`] data
 pub struct RunesRepository {
+    /// HashMap of internal rune id values to [`Rune`] instances
     runes: HashMap<i32, Rune>,
 }
 
 impl RunesRepository {
+    /// Loads the Rune data from CommunityDragon using the given HTTP client
     pub async fn load(client: &reqwest::Client) -> Result<RunesRepository, reqwest::Error> {
         let res = client
             .get(RUNES_DATA_URL)
@@ -39,6 +46,7 @@ impl RunesRepository {
         Ok(RunesRepository { runes: runes_map })
     }
 
+    /// Gets a [`Rune`] by its internal id
     pub fn get_by_id(&self, id: i32) -> Option<&Rune> {
         self.runes.get(&id)
     }
