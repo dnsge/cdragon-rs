@@ -1,11 +1,11 @@
 use crate::asset::AssetURL;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 const RUNES_DATA_URL: &str = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perks.json";
 
 /// Basic information about a Rune, as seen by CommunityDragon
-#[derive(Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Rune {
     /// Internal rune id
     pub id: i32,

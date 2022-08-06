@@ -1,11 +1,11 @@
 use crate::asset::AssetURL;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 const CHAMPION_DATA_URL: &str = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-summary.json";
 
 /// Basic information about a Champion, as seen by CommunityDragon
-#[derive(Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Champion {
     /// Internal champion id
     pub id: i32,
